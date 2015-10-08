@@ -12,7 +12,7 @@ import turnierplanung.evaluation.SingleConstraint;
 
 /**
  *
- * @author michael
+ * @author Michael Jungo
  */
 public class Plan {
     private static final int START_TIME = 0;
@@ -300,6 +300,7 @@ public class Plan {
         }
     }
     
+    // Returns a random number between 0 and bound excluding numbers from exclude.
     private int getRandomWithExclusion(int bound, List<Integer> exclude) {
         int random = Constants.RAND.nextInt(bound - exclude.size());
         for (int ex : exclude) {
@@ -314,19 +315,16 @@ public class Plan {
         Sequence newSeq = new Sequence(seq);
         List<Game> games = seq.getGames();
         int numGames = games.size();
-        int numRegular = 0;
         List<Integer> exclude = new ArrayList<>();
         // exclude final games in the shuffle
         for (Game g : games) {
-            if (!g.isFinal()) numRegular++;
-            //if (g.isFinal()) exclude.add(games.indexOf(g));
+            if (g.isFinal()) exclude.add(games.indexOf(g));
         }
-        if (numRegular < 2) return seq;             // nothing to shuffle
         for (int i = 0; i < num; i++) {
-            int index1 = Constants.RAND.nextInt(numRegular);//getRandomWithExclusion(numGames, exclude);//Constants.RAND.nextInt(numGames);
-            int index2 = Constants.RAND.nextInt(numRegular);//getRandomWithExclusion(numGames, exclude);//Constants.RAND.nextInt(numGames);
+            int index1 = getRandomWithExclusion(numGames, exclude);
+            int index2 = getRandomWithExclusion(numGames, exclude);
             while (index1 == index2) {
-                index2 = Constants.RAND.nextInt(numRegular);//getRandomWithExclusion(numGames, exclude);//Constants.RAND.nextInt(numGames);
+                index2 = getRandomWithExclusion(numGames, exclude);
             }
             newSeq.swapGames(games.get(index1), games.get(index2));
         }
