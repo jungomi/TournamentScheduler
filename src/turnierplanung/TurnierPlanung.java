@@ -150,6 +150,7 @@ public final class TurnierPlanung {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
+                /*
                 Constants.DEBUG = true;
                 plan.getBestSequence().setScore(-1);
                 plan.applySequence(plan.getBestSequence());
