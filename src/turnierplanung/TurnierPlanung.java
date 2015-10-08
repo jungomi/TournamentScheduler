@@ -21,10 +21,10 @@ public final class TurnierPlanung {
     private static final int NUM_SHUFFLE = 0;
     private static final int TIME_LIMIT = 60;
     private static final int NEIGHBOR_RANGE = 0;
-    private static String gameFileName = "beispiel.txt";//"../inputSa.txt";//
-    private static String spacingFileName = "beispiel-Min.txt";//"../inputSa-Min.txt";//
-    private static int minLag = 5;
-    private static int maxLagStd = 8;
+    private static String gameFileName = "../inputSa.txt";
+    private static String spacingFileName = "../inputSa-Min.txt";
+    private static int minLag = 7;
+    private static int maxLagStd = 9;
     private static int timeLimit = TIME_LIMIT;
     private static int numShuffle = NUM_SHUFFLE;
     private static int neighborRange = NEIGHBOR_RANGE;
