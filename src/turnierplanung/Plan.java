@@ -11,7 +11,7 @@ import turnierplanung.evaluation.Sequence;
 import turnierplanung.evaluation.SingleConstraint;
 
 /**
- * The Plan class represents a plan of Games realised by respect to 
+ * The Plan class represents a Plan of Games realised by respect to 
  * certain constraints.
  * 
  * <p>
