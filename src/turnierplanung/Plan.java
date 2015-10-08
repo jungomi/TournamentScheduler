@@ -174,7 +174,7 @@ public class Plan {
     }
     
     /**
-     * Creates a first Sequence and applies it to the plan.
+     * Creates a first Sequence and applies it to the Plan.
      */
     public void createInitialSequence() {
         Sequence seq = new Sequence();
