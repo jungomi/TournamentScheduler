@@ -7,8 +7,9 @@ import turnierplanung.Plan;
 import turnierplanung.Spacing;
 
 /**
- *
- * @author michael
+ * The PairConstraint class represents a constraint for a pair of games.
+ * 
+ * @author Michael Jungo
  */
 public class PairConstraint {
     // constant identifier
@@ -26,6 +27,14 @@ public class PairConstraint {
     private int maxLag;
     private int minLag;
     
+    /**
+     * Constructor.
+     * 
+     * @param eval the Evaluation used
+     * @param plan the plan the constraint applies to
+     * @param game1 the first Game of the pair the constraint applies to
+     * @param game2 the second Game of the pair the constraint applies to
+     */
     public PairConstraint(Evaluation eval, Plan plan, Game game1, Game game2) {
         this.eval = eval;
         this. plan = plan;
@@ -36,6 +45,10 @@ public class PairConstraint {
         calculateLag();
     }
     
+    /**
+     * Calculates the minimum and maximum time allowed between the two Games.
+     * These only exist when a Team is present participating in both Games.
+     */
     private void calculateLag() {
         if (game1.isFinal() || game2.isFinal()) {
             maxLag = 0;
@@ -56,6 +69,10 @@ public class PairConstraint {
         }
     }
     
+    /**
+     * 
+     * @return true if the final Game is after the regular
+     */
     public boolean isFinalAfterRegular() {
         if (game1.isFinal() && !game2.isFinal() && game1.getCategory() == game2.getCategory()) {
             return game1.getStart() >= game2.getStart() + game2.getDuration();
@@ -66,10 +83,18 @@ public class PairConstraint {
         return true;
     }
     
+    /**
+     * 
+     * @return true if the first Game is before the second
+     */
     public boolean isGame1First() {
         return game1.getStart() - game2.getStart() < 0;
     }
     
+    /**
+     * 
+     * @return true if the Games are not overlapping
+     */
     public boolean isNotOverlapping() {
         if (isGame1First()) {
             return game2.getStart() >= game1.getStart() + game1.getDuration();
@@ -80,6 +105,10 @@ public class PairConstraint {
            
     }
     
+    /**
+     * 
+     * @return true if the spacing between the Games is complied
+     */
     public boolean isSpacingCorrect() {
         for (Spacing s : game1.getSpacings()) {
             if (s.getGame1() == game1 && s.getGame2() == game2
@@ -90,11 +119,23 @@ public class PairConstraint {
         return true;
     }
     
+    /**
+     * Returns whether the final Game is after the regular, the Games are not
+     * overlapping and the spacing between them is complied.
+     *  
+     * @return true if satisfied
+     */
     public boolean strongConstraintSatisfied() {
         return isFinalAfterRegular() && isNotOverlapping() && isSpacingCorrect();
         
     }
     
+    /**
+     * Calculates the penalty for the violation of the maximum time between
+     * the two Games.
+     * 
+     * @return the penalty
+     */
     public int maxLagPenalty() {
         if (maxLag == 0 || !isGame1First()) return 0;
         int violation = -maxLag + (game2.getStart() - game1.getStart());
@@ -107,6 +148,12 @@ public class PairConstraint {
                 +(violation - fMaxLag.length + 1) * aMaxLag[aMaxLag.length - 1];
     }
     
+    /**
+     * Calculates the penalty for the violation of the minimum time between
+     * the two Games.
+     * 
+     * @return the penalty
+     */
     public int minLagPenalty() {
         if (minLag == 0 || !isGame1First()) return 0;
         int violation = minLag - (game2.getStart() - game1.getStart());
@@ -119,6 +166,11 @@ public class PairConstraint {
                 +(violation - fMinLag.length + 1) * aMinLag[aMinLag.length - 1];
     }
     
+    /**
+     * Returns the sum of the minimum and maximum time penalties.
+     * 
+     * @return the sum
+     */
     public int sumOfPenalties() {
     	int maxL = maxLagPenalty();
     	int minL = minLagPenalty();
@@ -129,10 +181,18 @@ public class PairConstraint {
         return minL + maxL;
     }
     
+    /**
+     * 
+     * @return the first Game
+     */
     public Game getGame1() {
         return game1;
     }
     
+    /**
+     * 
+     * @return the second Game
+     */
     public Game getGame2() {
         return game2;
     }

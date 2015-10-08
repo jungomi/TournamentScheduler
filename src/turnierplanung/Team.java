@@ -2,66 +2,89 @@
 package turnierplanung;
 
 /**
- *
- * @author michael
+ * The Team class represents a team.
+ * 
+ * @author Michael Jungo
  */
 public class Team {
-    private String id;
-    private int category, earliestStart, latestStart, maxLag, minLag;
+    private String name;
+    private int category, maxLag, minLag;
     
-    public Team(String id, int category, int minLag, int maxLag) {
-        this.id = id;
+    /**
+     * Constructor.
+     * 
+     * @param name the Team name
+     * @param category the category the Team belongs to
+     * @param minLag the minimum time between two Games of the Team
+     * @param maxLag the maximum time between two Games of the Team
+     */
+    public Team(String name, int category, int minLag, int maxLag) {
+        this.name = name;
         this.category = category;
-//        this.earliestStart = earliestStart;
-//        this.latestStart = latestStart;
         this.minLag = minLag;
         this.maxLag = maxLag;
     }
     
+    /**
+     * 
+     * @return the category the Team belongs to
+     */
     public int getCategory() {
         return category;
     }
-    
-//    public int getEarliestStart() {
-//        return earliestStart;
-//    }
-    
-    public String getId() {
-        return id;
+
+    /**
+     * 
+     * @return the Team name
+     */
+    public String getName() {
+        return name;
     }
-    
-//    public int getLatestStart() {
-//        return latestStart;
-//    }
-    
+        
+    /**
+     * 
+     * @return the maximum time between two Games of the Team
+     */
     public int getMaxLag() {
         return maxLag;
     }
     
+    /**
+     * 
+     * @return the minimum time between two Games of the Team
+     */
     public int getMinLag() {
         return minLag;
     }
     
+    /**
+     * 
+     * @param cat category to be set
+     */
     public void setCategory(int cat) {
         category = cat;
     }
     
-//    public void setEarliestStart(int earliestStart) {
-//        this.earliestStart = earliestStart;
-//    }
-    
-    public void setId(String id) {
-        this.id = id;
+    /**
+     * 
+     * @param name name to be set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
     
-//    public void setLatestStart(int latestStart) {
-//        this.latestStart = latestStart;
-//    }
-    
+    /**
+     * 
+     * @param max maximum time between two Games of the Team to be set
+     */
     public void setMaxLag(int max) {
         maxLag = max;
     }
     
+    /**
+     * 
+     * @param min minimum time between two Games of the Team to be set
+     */
     public void setMinLag(int min) {
         minLag = min;
     }

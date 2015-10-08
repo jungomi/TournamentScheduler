@@ -11,7 +11,12 @@ import turnierplanung.evaluation.Sequence;
 import turnierplanung.evaluation.SingleConstraint;
 
 /**
- *
+ * The Plan class represents a plan of Games realised by respect to 
+ * certain constraints.
+ * 
+ * <p>
+ * This class provides methods to create Sequences, evaluate and improve them.
+ * 
  * @author Michael Jungo
  */
 public class Plan {
@@ -30,6 +35,9 @@ public class Plan {
     private Sequence sequence;                      // currently used sequence
     private Sequence bestSequence;
     
+    /**
+     * Constructor.
+     */
     public Plan() {
         teams = new ArrayList<Team>();
         games = new ArrayList<Game>();
@@ -44,6 +52,7 @@ public class Plan {
         bestSequence = new Sequence();
     }
     
+    // Returns earliest start violation
     private int calculateEarliestStartViolation(Game game, int time) {
         if (time < game.getEarliestStart()) {
             return game.getEarliestStart() - time;
@@ -51,6 +60,7 @@ public class Plan {
         return 0;
     }
     
+    // Returns latest start violation
     private int calculateLatestStartViolation(Game game, int time) {
         if (time > game.getLatestStart()) {
             return time - game.getLatestStart();
@@ -58,6 +68,7 @@ public class Plan {
         return 0;
     }
     
+    // Returns maximum time violation
     private int calculateMaxLagViolation(Team team, int time, int previousTime) {
         if (time - previousTime > team.getMaxLag()) {
             return (time - previousTime) - team.getMaxLag();
@@ -65,6 +76,7 @@ public class Plan {
         return 0;
     }
     
+    // Returns mimimum time violation
     private int calculateMinLagViolation(Team team, int time, int previousTime) {
         if (time - previousTime < team.getMinLag()) {
             return team.getMinLag() - (time - previousTime);
@@ -72,6 +84,7 @@ public class Plan {
         return 0;
     }
     
+    // Evaluates every Sequence in the Neighborhood
     private void evaluateNeighborhood(List<Sequence> neighbors) {
         Sequence current = sequence;
 		for (Sequence s : neighbors) {
@@ -84,7 +97,9 @@ public class Plan {
         applySequence(current);                 // restore sequence    
     }
     
-    private Game findBestUpcomingGame(List<Game> games, Map<String, Integer> previous, int time) {
+    // Returns the best Game to insert at the current time
+    private Game findBestUpcomingGame(List<Game> games,
+                                      Map<String, Integer> previous, int time) {
         Game bestGame = null;
         int bestScore = -1;
         for (Game game : games) {
@@ -96,8 +111,8 @@ public class Plan {
             int earliestStartViolation = 0;
             int latestStartViolation = 0;
             int score;
-            Object previousTimeTeam1 = previous.get(team1.getId());
-            Object previousTimeTeam2 = previous.get(team2.getId());
+            Object previousTimeTeam1 = previous.get(team1.getName());
+            Object previousTimeTeam2 = previous.get(team2.getName());
             
             earliestStartViolation += calculateEarliestStartViolation(game, time);
             latestStartViolation += calculateLatestStartViolation(game, time);
@@ -127,6 +142,7 @@ public class Plan {
         return bestGame;
     }
     
+    // Returns the best Sequence in the Neighborhood
     private Sequence findBestNeighborSequence(List<Sequence> neighbors) {
         Sequence best = null;
         int bestScore = Integer.MAX_VALUE;
@@ -141,6 +157,11 @@ public class Plan {
         return best;
     }
     
+    /**
+     * Applies a Sequence to the Plan and sets the start time of every Game.
+     * 
+     * @param seq Sequence to apply
+     */
     public void applySequence(Sequence seq) {
         List<Game> games = seq.getGames();
         int nextStart = 0;
@@ -152,6 +173,9 @@ public class Plan {
         sequence = seq;
     }
     
+    /**
+     * Creates a first Sequence and applies it to the plan.
+     */
     public void createInitialSequence() {
         Sequence seq = new Sequence();
         Map<String, Integer> previousGameByTeam = new HashMap<String, Integer>();
@@ -162,8 +186,8 @@ public class Plan {
             //if (nextGame == null) break;
             seq.addGame(nextGame);
             if (!nextGame.isFinal()) {
-                previousGameByTeam.put(nextGame.getTeam1().getId(), currentTime);
-                previousGameByTeam.put(nextGame.getTeam2().getId(), currentTime);
+                previousGameByTeam.put(nextGame.getTeam1().getName(), currentTime);
+                previousGameByTeam.put(nextGame.getTeam2().getName(), currentTime);
             }
             currentTime += nextGame.getDuration();
             games.remove(nextGame);
@@ -172,6 +196,13 @@ public class Plan {
         bestSequence = seq;
     }
     
+    /**
+     * Creates a Neighborhood of the Sequence.
+     * 
+     * @param seq central Sequence of the Neighborhood
+     * @param range the range of the Neighborhood
+     * @return the List of Neighbors
+     */
     public List<Sequence> createNeighborhood(Sequence seq, int range) {
     	List<Sequence> neighbors = new ArrayList<Sequence>();
     	//forward shift (list of games)
@@ -273,6 +304,12 @@ public class Plan {
         return neighbors;
     }
     
+    /**
+     * Improves the current Sequence.
+     * 
+     * @param range the range of the Neighborhoods
+     * @return true if an improved sequence has been found
+     */
     public boolean improveSequence(int range) {
         List<Sequence> neighbors = createNeighborhood(sequence, range);
         evaluateNeighborhood(neighbors);
@@ -311,6 +348,13 @@ public class Plan {
         
     }
     
+    /**
+     * Creates a new Sequence by shuffling the given Sequence.
+     * 
+     * @param seq Sequence to be shuffled
+     * @param num number of shuffles
+     * @return the new Sequence
+     */
     public Sequence shuffleSequence(Sequence seq, int num) {
         Sequence newSeq = new Sequence(seq);
         List<Game> games = seq.getGames();
@@ -332,27 +376,49 @@ public class Plan {
         return newSeq;
     }
     
+    /**
+     * 
+     * @param c SingleConstraint to be added to the Plan
+     */
     public void addSingleConstraint(SingleConstraint c) {
         if (!singleConstraintExist(c)) singleConstraints.add(c);
     }
     
+    /**
+     * 
+     * @param c PairConstraint to be added to the Plan
+     */
     public void addPairConstraint(PairConstraint c) {
         if (!pairConstraintExist(c)) pairConstraints.add(c);
     }
     
+    /**
+     * 
+     * @param g Game to be added to the Plan
+     */
     public void addGame(Game g) {
         if (!gameExist(g)) games.add(g);
     }
     
-    
+    /**
+     * 
+     * @param s Spacing to be added to the Plan
+     */
     public void addSpacing(Spacing s) {
         if (!spacingExist(s)) spacings.add(s);
     }
     
+    /**
+     * 
+     * @param t Team to be added to the Plan
+     */
     public void addTeam(Team t) {
         if (!teamExist(t)) teams.add(t);
     }
     
+    /**
+     * Evaluates the current Sequence.
+     */
     public void evaluate() {
         int score = sequence.getScore();
         // sequence has already been evaluated
@@ -375,12 +441,21 @@ public class Plan {
             System.out.format("New best sequence: %s (Score: %d)\n", sequence, sequence.getScore());
         }
     }
-    
+
+    /**
+     * Checks whether the Game already exists.
+     * @param g Game to be checked
+     * @return true if the Game exists
+     */
     public boolean gameExist(Game g) {
         if (getGame(g.getName()) != null) return true;
         return false;
     }
     
+    /**
+     * 
+     * @return true if the Plan is valid
+     */
     public boolean isValid() {
         for (SingleConstraint c : singleConstraints) {
             if (!c.strongConstraintSatisfied()) {
@@ -395,6 +470,11 @@ public class Plan {
         return true;
     }
  
+    /**
+     * Checks whether the PairConstraint already exists.
+     * @param c PairConstraint to be checked
+     * @return true if the PairConstraint exists
+     */
     public boolean pairConstraintExist(PairConstraint c) {
         for (PairConstraint constr : pairConstraints) {
             if (constr.getGame1() == c.getGame1() && constr.getGame2() == c.getGame2()) {
@@ -404,6 +484,11 @@ public class Plan {
         return false;
     }
     
+    /**
+     * Checks whether the SingleConstraint already exists.
+     * @param c SingleConstraint to be checked
+     * @return true if the SingleConstraint exists
+     */
     public boolean singleConstraintExist(SingleConstraint c) {
         for (SingleConstraint constr : singleConstraints) {
             if (constr.getGame() == c.getGame()) {
@@ -413,7 +498,11 @@ public class Plan {
         return false;
     }
     
-    
+    /**
+     * Checks whether the Spacing already exists.
+     * @param s Spacing to be checked
+     * @return true if the Spacing exists
+     */
     public boolean spacingExist(Spacing s) {
         for (Spacing spac : spacings) {
             if (spac.getGame1() == s.getGame1() && spac.getGame2() == s.getGame2())
@@ -422,64 +511,116 @@ public class Plan {
         return false;
     }
     
+    /**
+     * Checks whether the Team already exists.
+     * @param t Team to be checked
+     * @return true if the Team exists
+     */
     public boolean teamExist(Team t) {
-        return getTeam(t.getId()) != null;
+        return getTeam(t.getName()) != null;
     }
     
+    /**
+     * 
+     * @return the best sequence
+     */
     public Sequence getBestSequence() {
         return bestSequence;
     }
     
+    /**
+     * 
+     * @return the current Sequence
+     */
     public Sequence getCurrentSequence() {
         return sequence;
     }
     
+    /**
+     * 
+     * @return the fictive end Game
+     */
     public Game getFictiveEnd() {
         return tau;
     }
     
+    /**
+     * 
+     * @return the fictive start Game
+     */
     public Game getFictiveStart() {
         return sigma;
     }
     
-    public Game getGame(String id) {
+    /**
+     * 
+     * @param name name of the Game
+     * @return the Game with the {@code name} or null if it does not exist
+     */
+    public Game getGame(String name) {
         for (Game g : games) {
-            if (g.getName().equals(id)) return g;
+            if (g.getName().equals(name)) return g;
         }
         return null;
     }
     
-    
+    /**
+     * 
+     * @return the List of PairConstraints
+     */
     public List<PairConstraint> getPairConstraints() {
         return pairConstraints;
     }
     
+    /**
+     * 
+     * @return the List of SingleConstraints
+     */
     public List<SingleConstraint> getSingleConstraints() {
         return singleConstraints;
     }
     
+    /**
+     * 
+     * @return the score of the current Sequence
+     */
     public int getScore() {
         return sequence.getScore();
     }
     
-    
-    public Team getTeam(String id) {
+    /**
+     * 
+     * @param name name of the Team
+     * @return the Team with the {@code name} or null if it does not exist
+     */
+    public Team getTeam(String name) {
         for (Team t : teams) {
-            if (t.getId().equals(id)) return t;
+            if (t.getName().equals(name)) return t;
         }
         return null;
     }
     
+    /**
+     * 
+     * @return the List of Games
+     */
     public List<Game> getGames() {
         return games;
     }
     
+    /**
+     * 
+     * @return the List of Spacings
+     */
     public List<Spacing> getSpacings() {
         return spacings;
     }
     
+    /**
+     * 
+     * @return the List of Teams
+     */
     public List<Team> getTeams() {
         return teams;
     }
-    
 }

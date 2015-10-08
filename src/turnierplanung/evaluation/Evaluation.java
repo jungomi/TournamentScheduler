@@ -1,24 +1,29 @@
 
 package turnierplanung.evaluation;
 
-import turnierplanung.Plan;
-
 /**
- *
- * @author michael
+ * The Evaluation class represents a list of values to use for an evaluation.
+ * 
+ * @author Michael Jungo
  */
 public class Evaluation {
-    private Plan plan;
     private int[][] a;
     private int[][] f;
-    private int numIntervals;
+    private final int numIntervals;
     
-    public Evaluation(Plan plan, int numIntervals) {
-        this.plan = plan;
+    /**
+     * Constructor.
+     * 
+     * @param numIntervals the number of intervals
+     */
+    public Evaluation(int numIntervals) {
         a = new int[numIntervals][];
         this.numIntervals = numIntervals;
     }
     
+    /**
+     * Calculates the function values.
+     */
     public void calculateIntervalF() {
         f = new int[a.length][];
         for (int i = 0; i < f.length; i++) {
@@ -30,11 +35,19 @@ public class Evaluation {
         }
     }
     
+    /**
+     * Inserts the interval used to calculate the function values.
+     * 
+     * @param array the interval to be inserted
+     * @param numInterval the number of the interval
+     */
     public void insertIntervalA(int[] array, int numInterval) {
         a[numInterval] = array;
     }
     
-    // for testing
+    /**
+     * Prints the function values.
+     */
     public void printIntervalF() {
         for (int i = 0; i < f.length; i++) {
             for (int j = 0; j < f[i].length; j++) {
@@ -43,14 +56,26 @@ public class Evaluation {
         }
     }
     
+    /**
+     * 
+     * @return the interval used to calculate the function values
+     */
     public int[][] getIntervalA() {
         return a;
     }
     
+    /**
+     * 
+     * @return the interval of function values
+     */
     public int[][] getIntervalF() {
         return f;
     }
     
+    /**
+     * 
+     * @return the number of intervals
+     */
     public int getNumInervals() {
         return numIntervals;
     }

@@ -29,21 +29,22 @@ public final class TurnierPlanung {
     private static int numShuffle = NUM_SHUFFLE;
     private static int neighborRange = NEIGHBOR_RANGE;
     
+    // Suppresses default constructor, ensuring non-instantiability
     private TurnierPlanung() {
     }
     
-    // Prints the teams, games and spacing of the plan
+    // Prints the Teams, Games and Spacings of the Plan
     private static void printPlan(Plan p) {
         System.out.println("*** Teams ***");
         for (Team t : p.getTeams()) {
-            System.out.format("Team: %s - maxLag: %d\n", t.getId(), t.getMaxLag());
+            System.out.format("Team: %s - maxLag: %d\n", t.getName(), t.getMaxLag());
         }
         System.out.println("*** Games ***");
         for (Game g : p.getGames()) {
             String t1 = "TBA";
             String t2 = "TBA";
-            if (g.getTeam1() != null) t1 = g.getTeam1().getId();
-            if (g.getTeam2() != null) t2 = g.getTeam2().getId();
+            if (g.getTeam1() != null) t1 = g.getTeam1().getName();
+            if (g.getTeam2() != null) t2 = g.getTeam2().getName();
             System.out.format("Game: %s - %s vs. %s\n", g.getName(), t1, t2);
         }
         System.out.println("*** Spacings ***");
@@ -67,7 +68,7 @@ public final class TurnierPlanung {
         }
     }
     
-    // Parses game informations from a file
+    // Parses Game informations from a File
     private static void parseGame(String fileName, Plan plan) throws FileNotFoundException {
         GameParser parser = new GameParser(fileName);
         int id = 1;
@@ -101,7 +102,7 @@ public final class TurnierPlanung {
         calculateLags(plan);
     }
     
-    // Parses spacing informations from a file
+    // Parses Spacing informations from a File
     private static void parseSpacing(String fileName, Plan plan) throws FileNotFoundException {
         SpacingParser parser = new SpacingParser(fileName);
         while (parser.next()) {
@@ -120,8 +121,8 @@ public final class TurnierPlanung {
     }
     
     /**
-     * Creates a plan with games, teams, constraints and a sequence.
-     * The sequence is improved during a given time limit.
+     * Creates a plan with Games, Teams, Constraints and a Sequence.
+     * The Sequence is improved during a given time limit.
      * 
      * @param args the command line arguments
      */
@@ -163,7 +164,7 @@ public final class TurnierPlanung {
         // For testing
         printPlan(plan);
         
-        Evaluation eval = new Evaluation(plan, 5);
+        Evaluation eval = new Evaluation(5);
         int a[][] = {{10000, 40000, 50000, 50000, 50000},
                      {1, 10, 100, 10000, 20000, 50000},
                      {1, 10, 100, 10000, 20000, 50000},

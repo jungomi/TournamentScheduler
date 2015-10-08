@@ -6,11 +6,12 @@ import turnierplanung.Game;
 import turnierplanung.Plan;
 
 /**
- *
+ * The SingleConstraint class represents a constraint for a game.
+ * 
  * @author Michael Jungo
  */
 public class SingleConstraint {
-    // constant identifier
+    // constant identifiers
     private static final int EARLIEST_START = 1;
     private static final int LATEST_START = 2;
     private static final int MAX_LAG = 3;
@@ -22,6 +23,13 @@ public class SingleConstraint {
     private Game sigma;     // fictive start
     private Game tau;       // fictive end
     
+    /**
+     * Constructor.
+     * 
+     * @param eval the Evaluation used
+     * @param plan the Plan the constraint applies to
+     * @param game the Game the constraint applies to
+     */
     public SingleConstraint(Evaluation eval, Plan plan, Game game) {
         this.eval = eval;
         this. plan = plan;
@@ -30,21 +38,40 @@ public class SingleConstraint {
         tau = plan.getFictiveEnd();
     }
     
+    /**
+     * 
+     * @return true if the Game is after the fictive start
+     */
     public boolean isAfterFictiveStart() {
         return game.getStart() >= sigma.getStart() + sigma.getDuration();
 
     }
     
+    /**
+     * 
+     * @return true if the Game is before the fictive end
+     */
     public boolean isBeforeFictiveEnd() {
         return tau.getStart() >= game.getStart() + game.getDuration();
     }
     
     
+    /**
+     * Returns whether the Game is after the fictive start and before the 
+     * fictive end.
+     * 
+     * @return true if satisfied
+     */
     public boolean strongConstraintSatisfied() {
         return isAfterFictiveStart() && isBeforeFictiveEnd();
         
     }
     
+    /**
+     * Calculates the penalty for the violation of the earliest possible start.
+     * 
+     * @return the penalty
+     */
     public int earliestStartPenalty() {
         if (game.getEarliestStart() == 0) return 0;
         int violation = game.getEarliestStart() - (game.getStart() - sigma.getStart());
@@ -57,6 +84,11 @@ public class SingleConstraint {
                 +(violation - fEarliest.length + 1) * aEarliest[aEarliest.length - 1];
     }
     
+    /**
+     * Calculates the penalty for the violation of the latest possible start.
+     * 
+     * @return the penalty
+     */
     public int latestStartPenalty() {
         if (game.getLatestStart() == 0) return 0;
         int violation = -game.getLatestStart() - (sigma.getStart() - game.getStart());
@@ -69,6 +101,11 @@ public class SingleConstraint {
                 +(violation - fLatest.length + 1) * aLatest[aLatest.length - 1];
     }
     
+    /**
+     * Returns the sum of the latest and earliest start penalties.
+     * 
+     * @return the sum
+     */
     public int sumOfPenalties() {
     	int ep = earliestStartPenalty();
     	int lp = latestStartPenalty();
@@ -79,6 +116,10 @@ public class SingleConstraint {
         return ep + lp;
     }
     
+    /**
+     * 
+     * @return the Game the constraint applies to
+     */
     public Game getGame() {
         return game;
     }
