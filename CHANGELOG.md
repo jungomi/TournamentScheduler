@@ -1,5 +1,13 @@
 # Change Log
 
+## 2015-10-09
+### Added
+- README.
+
+## 2015-10-08
+### Added
+- Javadoc comments.
+
 ## 2015-10-05
 ### Added 
 - Game id.
