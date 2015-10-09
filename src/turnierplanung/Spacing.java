@@ -27,34 +27,10 @@ public class Spacing {
     
     /**
      * 
-     * @return the space between the two Games
-     */
-    public int getSpace() {
-        return space;
-    }
-    
-    /**
-     * 
      * @return the first Game the Spacing applies to
      */
     public Game getGame1() {
         return game1;
-    }
-    
-    /**
-     * 
-     * @return the second Game the Spacing applies to
-     */
-    public Game getGame2() {
-        return game2;
-    }
-    
-    /**
-     * 
-     * @param s space to be set
-     */
-    public void setSpace(int s) {
-        space = s;
     }
     
     /**
@@ -67,9 +43,33 @@ public class Spacing {
     
     /**
      * 
+     * @return the second Game the Spacing applies to
+     */
+    public Game getGame2() {
+        return game2;
+    }
+    
+    /**
+     * 
      * @param g Game to be set as second Game
      */
     public void setGame2(Game g) {
         game2 = g;
+    }
+    
+    /**
+     * 
+     * @return the space between the two Games
+     */
+    public int getSpace() {
+        return space;
+    }
+    
+    /**
+     * 
+     * @param s space to be set
+     */
+    public void setSpace(int s) {
+        space = s;
     }
 }

@@ -46,30 +46,6 @@ public class PairConstraint {
     }
     
     /**
-     * Calculates the minimum and maximum time allowed between the two Games.
-     * These only exist when a Team is present participating in both Games.
-     */
-    private void calculateLag() {
-        if (game1.isFinal() || game2.isFinal()) {
-            maxLag = 0;
-            minLag = 0;
-            return;
-        }
-        if (game1.getTeam1() == game2.getTeam1() || game1.getTeam1() == game2.getTeam2()) {
-            maxLag = game1.getTeam1().getMaxLag();
-            minLag = game1.getTeam1().getMinLag();
-        } 
-        else if(game1.getTeam2() == game2.getTeam1() || game1.getTeam2() == game2.getTeam2()) {
-            maxLag = game1.getTeam2().getMaxLag();
-            minLag = game1.getTeam2().getMinLag();
-        }
-        else {
-            maxLag = 0;
-            minLag = 0;
-        }
-    }
-    
-    /**
      * 
      * @return true if the final Game is after the regular
      */
@@ -195,5 +171,29 @@ public class PairConstraint {
      */
     public Game getGame2() {
         return game2;
+    }
+    
+    /**
+     * Calculates the minimum and maximum time allowed between the two Games.
+     * These only exist when a Team is present participating in both Games.
+     */
+    private void calculateLag() {
+        if (game1.isFinal() || game2.isFinal()) {
+            maxLag = 0;
+            minLag = 0;
+            return;
+        }
+        if (game1.getTeam1() == game2.getTeam1() || game1.getTeam1() == game2.getTeam2()) {
+            maxLag = game1.getTeam1().getMaxLag();
+            minLag = game1.getTeam1().getMinLag();
+        } 
+        else if(game1.getTeam2() == game2.getTeam1() || game1.getTeam2() == game2.getTeam2()) {
+            maxLag = game1.getTeam2().getMaxLag();
+            minLag = game1.getTeam2().getMinLag();
+        }
+        else {
+            maxLag = 0;
+            minLag = 0;
+        }
     }
 }

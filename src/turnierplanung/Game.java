@@ -76,6 +76,14 @@ public class Game {
     
     /**
      * 
+     * @param cat category to set
+     */
+    public void setCategory(int cat) {
+        category = cat;
+    }
+    
+    /**
+     * 
      * @return the duration of the Game
      */
     public int getDuration() {
@@ -84,18 +92,18 @@ public class Game {
     
     /**
      * 
-     * @return the earliest possible start
+     * @param dur duration to set
      */
-    public int getEarliestStart() {
-        return earliestStart;
+    public void setDuration(int dur) {
+        duration = dur;
     }
     
     /**
      * 
-     * @return the Game id
+     * @return the earliest possible start
      */
-    public int getId() {
-        return id;
+    public int getEarliestStart() {
+        return earliestStart;
     }
     
     /**
@@ -130,14 +138,6 @@ public class Game {
     
     /**
      * 
-     * @return the name of the Game
-     */
-    public String getName() {
-        return name;
-    }
-    
-    /**
-     * 
      * @return the list of Spacings
      */
     public List<Spacing> getSpacings() {
@@ -154,66 +154,18 @@ public class Game {
     
     /**
      * 
-     * @return the first Team competing in the Game
-     */
-    public Team getTeam1() {
-        return team1;
-    }
-    
-    /**
-     * 
-     * @return the second Team competing in the Game
-     */
-    public Team getTeam2() {
-        return team2;
-    }
-    
-    /**
-     * 
-     * @return true if the Game is a final Game
-     */
-    public boolean isFinal() {
-        return isFinal;
-    }
-    
-    /**
-     * 
-     * @param cat category to set
-     */
-    public void setCategory(int cat) {
-        category = cat;
-    }
-    
-    /**
-     * 
-     * @param dur duration to set
-     */
-    public void setDuration(int dur) {
-        duration = dur;
-    }
-    
-    /**
-     * 
-     * @param name name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    /**
-     * 
-     * @param isFinal whether the Game is set to be a final Game
-     */
-    public void setIsFinal(boolean isFinal) {
-        this.isFinal = isFinal;
-    }
-    
-    /**
-     * 
      * @param time time to set
      */
     public void setStart(int time) {
         start = time;
+    }
+    
+    /**
+     * 
+     * @return the first Team competing in the Game
+     */
+    public Team getTeam1() {
+        return team1;
     }
     
     /**
@@ -226,9 +178,57 @@ public class Game {
     
     /**
      * 
+     * @return the second Team competing in the Game
+     */
+    public Team getTeam2() {
+        return team2;
+    }
+    
+    /**
+     * 
      * @param team Team to set as second Team
      */
     public void setTeam2(Team team) {
         team2 = team;
+    }
+    
+    /**
+     * 
+     * @return true if the Game is a final Game
+     */
+    public boolean isFinal() {
+        return isFinal;
+    }
+    
+    /**
+     * 
+     * @param isFinal whether the Game is set to be a final Game
+     */
+    public void setIsFinal(boolean isFinal) {
+        this.isFinal = isFinal;
+    }
+    
+    /**
+     * 
+     * @return the name of the Game
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * 
+     * @param name name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+    /**
+     * 
+     * @return the Game id
+     */
+    public int getId() {
+        return id;
     }
 }

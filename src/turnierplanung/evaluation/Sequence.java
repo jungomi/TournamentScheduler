@@ -51,22 +51,6 @@ public class Sequence {
     }
     
     /**
-     * 
-     * @return the list of games of the sequence
-     */
-    public List<Game> getGames() {
-        return games;
-    }
-    
-    /**
-     * 
-     * @return the score of the sequence
-     */
-    public int getScore() {
-        return score;
-    }
-    
-    /**
      * Moves a Game backwards in the sequence.
      * 
      * @param game game to be moved
@@ -97,6 +81,22 @@ public class Sequence {
      */
     public void swapGames(Game game1, Game game2) {
         Collections.swap(games, games.indexOf(game1), games.indexOf(game2));
+    }
+    
+    /**
+     * 
+     * @return the list of games of the sequence
+     */
+    public List<Game> getGames() {
+        return games;
+    }
+    
+    /**
+     * 
+     * @return the score of the sequence
+     */
+    public int getScore() {
+        return score;
     }
     
     /**

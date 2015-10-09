@@ -32,13 +32,13 @@ public class Team {
     public int getCategory() {
         return category;
     }
-
+    
     /**
      * 
-     * @return the Team name
+     * @param cat category to be set
      */
-    public String getName() {
-        return name;
+    public void setCategory(int cat) {
+        category = cat;
     }
         
     /**
@@ -51,30 +51,6 @@ public class Team {
     
     /**
      * 
-     * @return the minimum time between two Games of the Team
-     */
-    public int getMinLag() {
-        return minLag;
-    }
-    
-    /**
-     * 
-     * @param cat category to be set
-     */
-    public void setCategory(int cat) {
-        category = cat;
-    }
-    
-    /**
-     * 
-     * @param name name to be set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    /**
-     * 
      * @param max maximum time between two Games of the Team to be set
      */
     public void setMaxLag(int max) {
@@ -83,9 +59,33 @@ public class Team {
     
     /**
      * 
+     * @return the minimum time between two Games of the Team
+     */
+    public int getMinLag() {
+        return minLag;
+    }
+    
+    /**
+     * 
      * @param min minimum time between two Games of the Team to be set
      */
     public void setMinLag(int min) {
         minLag = min;
+    }
+    
+    /**
+     * 
+     * @return the Team name
+     */
+    public String getName() {
+        return name;
+    }
+    
+    /**
+     * 
+     * @param name name to be set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 }
