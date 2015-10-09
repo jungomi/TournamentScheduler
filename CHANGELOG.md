@@ -8,6 +8,9 @@
 ### Added
 - Javadoc comments.
 
+### Changed
+- Improved the shuffle of a sequence to exclude final games correctly.
+
 ## 2015-10-05
 ### Added 
 - Game id.
