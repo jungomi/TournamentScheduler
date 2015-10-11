@@ -2,7 +2,7 @@
 
 ## Usage
 ```
-  java -jar TurnierPlanung.jar [<game_file> <spacing_file> <time_limit> <neighbor_range> <num_shuffle>]
+  $ java -jar TurnierPlanung.jar [<game_file> <spacing_file> <time_limit> <neighbor_range> <num_shuffle>]
   
   <game_file>
     path to the file with game informations
