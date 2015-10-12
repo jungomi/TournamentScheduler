@@ -17,7 +17,7 @@ public class GameParser extends turnierplanung.parser.Parser {
      * Constructor.
      * 
      * @param fileName the path to the File
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException if fileName does not exist. 
      */
     public GameParser(String fileName) throws FileNotFoundException {
         super(fileName);

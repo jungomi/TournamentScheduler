@@ -21,7 +21,7 @@ public class Parser {
      * Constructor.
      * 
      * @param fileName the path to the File
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException if fileName does not exist.
      */
     public Parser(String fileName) throws FileNotFoundException {
         fRead = new FileReader(fileName);

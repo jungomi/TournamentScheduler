@@ -17,7 +17,7 @@ public class SpacingParser extends turnierplanung.parser.Parser {
      * Constructor.
      * 
      * @param fileName the path to the File
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException if fileName does not exist.
      */
     public SpacingParser(String fileName) throws FileNotFoundException {
         super(fileName);
