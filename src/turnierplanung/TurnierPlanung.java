@@ -19,7 +19,7 @@ import turnierplanung.parser.SpacingParser;
 public final class TurnierPlanung {
     private static final int DEFAULT_GAME_DURATION = 1;
     private static final int NUM_SHUFFLE = 0;
-    private static final int TIME_LIMIT = 60;
+    private static final int TIME_LIMIT = 300;
     private static final int NEIGHBOR_RANGE = 0;
     private static String gameFileName = "input.txt";
     private static String spacingFileName = "input-Min.txt";
@@ -150,19 +150,12 @@ public final class TurnierPlanung {
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                /*
-                Constants.DEBUG = true;
-                plan.getBestSequence().setScore(-1);
-                plan.applySequence(plan.getBestSequence());
-                plan.evaluate();
-                Constants.DEBUG = false; //*/
                 System.out.format("Best Solution found: %s (Score: %d)\n",
                                    plan.getBestSequence().toString(),
                                    plan.getBestSequence().getScore());
             }
         });
         
-        // For testing
         printPlan(plan);
         
         Evaluation eval = new Evaluation(5);
@@ -175,8 +168,6 @@ public final class TurnierPlanung {
             eval.insertIntervalA(a[i], i);
         }
         eval.calculateIntervalF();
-        // for testing
-        eval.printIntervalF();
         
         for (Game g1 : plan.getGames()) {
             SingleConstraint singleConstr = new SingleConstraint(eval, plan, g1);

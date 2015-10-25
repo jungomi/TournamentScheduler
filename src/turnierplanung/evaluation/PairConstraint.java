@@ -12,9 +12,7 @@ import turnierplanung.Spacing;
  * @author Michael Jungo
  */
 public class PairConstraint {
-    // constant identifier
-    private static final int EARLIEST_START = 1;
-    private static final int LATEST_START = 2;
+    // constant identifiers
     private static final int MAX_LAG = 3;
     private static final int MIN_LAG = 4;
     

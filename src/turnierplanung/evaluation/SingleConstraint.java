@@ -14,8 +14,6 @@ public class SingleConstraint {
     // constant identifiers
     private static final int EARLIEST_START = 1;
     private static final int LATEST_START = 2;
-    private static final int MAX_LAG = 3;
-    private static final int MIN_LAG = 4;
     
     private Game game;     // focused game
     private Evaluation eval;

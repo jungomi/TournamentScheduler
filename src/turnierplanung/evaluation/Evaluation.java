@@ -46,17 +46,6 @@ public class Evaluation {
     }
     
     /**
-     * Prints the function values.
-     */
-    public void printIntervalF() {
-        for (int i = 0; i < f.length; i++) {
-            for (int j = 0; j < f[i].length; j++) {
-                System.out.format("f[%d][%d] = %7d\n", i, j, f[i][j]);
-            }
-        }
-    }
-    
-    /**
      * 
      * @return the interval used to calculate the function values
      */

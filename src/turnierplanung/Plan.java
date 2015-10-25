@@ -78,7 +78,6 @@ public class Plan {
         int currentTime = 0;
         while (!games.isEmpty()) {
             Game nextGame = findBestUpcomingGame(games, previousGameByTeam, currentTime);
-            //if (nextGame == null) break;
             seq.addGame(nextGame);
             if (!nextGame.isFinal()) {
                 previousGameByTeam.put(nextGame.getTeam1().getName(), currentTime);
@@ -179,7 +178,7 @@ public class Plan {
         evaluateNeighborhood(neighbors);
         Sequence seq = findBestNeighborSequence(neighbors); 
         if(seq == null) {
-        	System.err.println("no feasible neighbor?");
+        	System.err.println("no feasible neighbor");
         }
         if (seq != null  && seq.getScore()< this.getScore()) {
             applySequence(seq);
@@ -190,12 +189,6 @@ public class Plan {
             return true;
         }
         else {
-            //System.out.format("Locally optimal sequence: %s (Score: %d)\n", sequence.toString(), getScore());
-            /*
-            Constants.DEBUG = true;
-            sequence.setScore(-1);
-            evaluate();
-            Constants.DEBUG = false; //*/
             return false;
 
         }
@@ -211,7 +204,8 @@ public class Plan {
 				s.setScore(this.getScore());
 			}
 		}
-        applySequence(current);                 // restore sequence    
+        // restore sequence
+        applySequence(current);    
     }
     
     /**
@@ -223,10 +217,6 @@ public class Plan {
      */
     public List<Sequence> createNeighborhood(Sequence seq, int range) {
     	List<Sequence> neighbors = new ArrayList<Sequence>();
-    	//forward shift (list of games)
-    	//backward shift (list of games)
-    	//moveApart (list of game tuples)
-    	//moveTogether (list of game tuples)
     	
     	for (SingleConstraint c : singleConstraints) {
             Game game = c.getGame();
@@ -328,7 +318,8 @@ public class Plan {
         int bestScore = Integer.MAX_VALUE;
         for (Sequence s : neighbors) {
             int score = s.getScore();
-            if (score < 0 ) continue;               // ignore invalid sequences
+            // ignore invalid sequences
+            if (score < 0 ) continue;
             if (score < bestScore) {
                 bestScore = score;
                 best = s;
