@@ -1,22 +1,22 @@
-package turnierplanung;
+package tournamentscheduler;
 
 import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import turnierplanung.evaluation.Evaluation;
-import turnierplanung.evaluation.PairConstraint;
-import turnierplanung.evaluation.Sequence;
-import turnierplanung.evaluation.SingleConstraint;
-import turnierplanung.parser.GameParser;
-import turnierplanung.parser.SpacingParser;
+import tournamentscheduler.evaluation.Evaluation;
+import tournamentscheduler.evaluation.PairConstraint;
+import tournamentscheduler.evaluation.Sequence;
+import tournamentscheduler.evaluation.SingleConstraint;
+import tournamentscheduler.parser.GameParser;
+import tournamentscheduler.parser.SpacingParser;
 
 /**
- * The TurnierPlanung class parses information about games, creates a plan and
- * searches for a good sequence respecting the given constraints.
+ * The TournamentScheduler class parses information about games, creates a plan and
+ searches for a good sequence respecting the given constraints.
  * 
  * @author Michael Jungo
  */
-public final class TurnierPlanung {
+public final class TournamentScheduler {
     private static final int DEFAULT_GAME_DURATION = 1;
     private static final int NUM_SHUFFLE = 0;
     private static final int TIME_LIMIT = 300;
@@ -30,7 +30,7 @@ public final class TurnierPlanung {
     private static int neighborRange = NEIGHBOR_RANGE;
     
     // Suppresses default constructor, ensuring non-instantiability
-    private TurnierPlanung() {
+    private TournamentScheduler() {
     }
     
     // Prints the Teams, Games and Spacings of the Plan
@@ -138,7 +138,7 @@ public final class TurnierPlanung {
             parseGame(gameFileName, plan);
             parseSpacing(spacingFileName, plan);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(TurnierPlanung.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TournamentScheduler.class.getName()).log(Level.SEVERE, null, ex);
             System.exit(-1);
         }
         

@@ -1,9 +1,9 @@
 
-package turnierplanung.evaluation;
+package tournamentscheduler.evaluation;
 
-import turnierplanung.Constants;
-import turnierplanung.Game;
-import turnierplanung.Plan;
+import tournamentscheduler.Constants;
+import tournamentscheduler.Game;
+import tournamentscheduler.Plan;
 
 /**
  * The SingleConstraint class represents a constraint for a game.

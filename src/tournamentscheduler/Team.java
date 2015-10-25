@@ -1,5 +1,5 @@
 
-package turnierplanung;
+package tournamentscheduler;
 
 /**
  * The Team class represents a team.

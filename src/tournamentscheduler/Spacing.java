@@ -1,5 +1,5 @@
 
-package turnierplanung;
+package tournamentscheduler;
 
 /**
  * The Spacing class represents a spacing between two games.

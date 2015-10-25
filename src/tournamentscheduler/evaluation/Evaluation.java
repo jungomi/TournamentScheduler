@@ -1,5 +1,5 @@
 
-package turnierplanung.evaluation;
+package tournamentscheduler.evaluation;
 
 /**
  * The Evaluation class represents a list of values to use for an evaluation.

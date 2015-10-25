@@ -1,10 +1,10 @@
 
-package turnierplanung.evaluation;
+package tournamentscheduler.evaluation;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import turnierplanung.Game;
+import tournamentscheduler.Game;
 
 /**
  * The Sequence class represents an order for a list of games.

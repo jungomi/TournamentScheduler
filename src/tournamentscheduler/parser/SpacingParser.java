@@ -1,5 +1,5 @@
 
-package turnierplanung.parser;
+package tournamentscheduler.parser;
 
 import java.io.FileNotFoundException;
 
@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
  * 
  * @author Michael Jungo
  */
-public class SpacingParser extends turnierplanung.parser.Parser {
+public class SpacingParser extends tournamentscheduler.parser.Parser {
 
     private String spacingInfo[];
     

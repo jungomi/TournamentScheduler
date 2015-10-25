@@ -1,10 +1,10 @@
 
-package turnierplanung.evaluation;
+package tournamentscheduler.evaluation;
 
-import turnierplanung.Constants;
-import turnierplanung.Game;
-import turnierplanung.Plan;
-import turnierplanung.Spacing;
+import tournamentscheduler.Constants;
+import tournamentscheduler.Game;
+import tournamentscheduler.Plan;
+import tournamentscheduler.Spacing;
 
 /**
  * The PairConstraint class represents a constraint for a pair of games.

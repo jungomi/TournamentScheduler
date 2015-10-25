@@ -1,5 +1,5 @@
 
-package turnierplanung.parser;
+package tournamentscheduler.parser;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

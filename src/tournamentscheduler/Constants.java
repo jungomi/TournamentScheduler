@@ -1,4 +1,4 @@
-package turnierplanung;
+package tournamentscheduler;
 
 import java.util.Random;
 

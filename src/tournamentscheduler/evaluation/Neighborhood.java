@@ -1,5 +1,5 @@
 
-package turnierplanung.evaluation;
+package tournamentscheduler.evaluation;
 
 import java.util.ArrayList;
 import java.util.List;

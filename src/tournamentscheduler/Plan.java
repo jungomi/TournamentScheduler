@@ -1,14 +1,14 @@
 
-package turnierplanung;
+package tournamentscheduler;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import turnierplanung.evaluation.PairConstraint;
-import turnierplanung.evaluation.Sequence;
-import turnierplanung.evaluation.SingleConstraint;
+import tournamentscheduler.evaluation.PairConstraint;
+import tournamentscheduler.evaluation.Sequence;
+import tournamentscheduler.evaluation.SingleConstraint;
 
 /**
  * The Plan class represents a Plan of Games realised by respect to 
