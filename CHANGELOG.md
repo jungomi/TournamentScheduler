@@ -4,6 +4,7 @@
 ### Changed
 - Project name.
 - Clarified README and giving input files examples.
+- Add description to README.
 
 ###  Removed
 - Unused code bits.
