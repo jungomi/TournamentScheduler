@@ -1,4 +1,4 @@
-# README
+# Tournament Scheduler
 
 This is a heuristic approach to solve a tournament scheduling problem respecting
 earliest and latest start, minimal and maximal spacing between two games.
