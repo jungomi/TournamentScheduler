@@ -1,14 +1,19 @@
 # README
 
+This is a heuristic approach to solve a tournament scheduling problem respecting
+earliest and latest start, minimal and maximal spacing between two games.
+These constraints can be vioalted in order to get a better schedule, but each
+violation is penalized exponentially.
+
 ## Usage
 
 ```sh
-java -jar TournamentScheduler [<game_file> <spacing_file> <time_limit>
-                               <neighbor_range> <num_shuffle>]
+$ java -jar TournamentScheduler [<game_file> <spacing_file> <time_limit>
+                                 <neighbor_range> <num_shuffle>]
 ```
 
 `<game_file>` path to the file with game informations
-(**default:** `input.txt`)  
+(**default:** `input.txt`)   
 `<spacing_file>` path to the file with spacing informations
 (**default:** `intput-Min.txt`)  
 `<time_limit>` time limit in seconds
