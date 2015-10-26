@@ -1,5 +1,13 @@
 # Change Log
 
+## 2015-10-26
+### Changed
+- Project name.
+- Clarified README and giving input files examples.
+
+###  Removed
+- Unused code bits.
+
 ## 2015-10-09
 ### Added
 - README.
