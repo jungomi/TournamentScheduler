@@ -2,7 +2,7 @@
 
 This is a heuristic approach to solve a tournament scheduling problem respecting
 earliest and latest start, minimal and maximal spacing between two games.
-These constraints can be vioalted in order to get a better schedule, but each
+These constraints can be violated in order to get a better schedule, but each
 violation is penalized exponentially.
 
 ## Usage
