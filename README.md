@@ -19,9 +19,9 @@ $ java -jar TournamentScheduler [<game_file> <spacing_file> <time_limit>
 `<time_limit>` time limit in seconds
 (**default:** 300)   
 `<neighbor_range>` range for the neighborhood generation 
-(**default:** depending on number of games)  
+(**default:** calculated from the number of games)  
 `<num_shuffle>` number of shuffles done to find a new starting sequence 
-(**default:** depending on number of games) 
+(**default:** calculated from the number of games) 
 
 ### Game file
 
