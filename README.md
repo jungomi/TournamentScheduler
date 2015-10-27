@@ -26,11 +26,11 @@ $ java -jar TournamentScheduler.jar [<game_file> <spacing_file> <time_limit>
 ### Game file
 
 The game file contains the *game id*, *team 1*, *team 2*, *earliest start*,
-*latest start*, *minimal spacing* and *maximal spacing* separated by tabs.
+*latest start*, *category* and *is final* separated by tabs.
 
 ```
-1	A	B	0	12	2	10
-2	C	D	4	20	0	0
+1	A	B	0	12	2	0
+2	C	D	4	20	2	1
 ...
 ```
 
@@ -44,5 +44,3 @@ by tabs.
 2	4	5
 ...
 ```
-
-
