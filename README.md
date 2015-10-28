@@ -8,8 +8,7 @@ violation is penalized exponentially.
 ## Usage
 
 ```sh
-$ java -jar TournamentScheduler.jar [<game_file> <spacing_file> <time_limit>
-                                     <neighbor_range> <num_shuffle>]
+$ java -jar TournamentScheduler.jar [<game_file> <spacing_file> <time_limit> <neighbor_range> <num_shuffle>]
 ```
 
 `<game_file>` path to the file with game informations
