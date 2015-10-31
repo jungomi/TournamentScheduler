@@ -17,6 +17,7 @@ Targets:
   doc       generates javadoc
   jar       builds a jar file
   dist      invokes doc and jar
+  clean     removes generated files
   run       runs the project
 ```
 
